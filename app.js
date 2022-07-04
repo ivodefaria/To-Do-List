@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const Item = require(__dirname + "/Item.js");
 const List = require(__dirname + "/List.js");
 const _ = require("lodash");
-
+const dotenv = require('dotenv').config();
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-ivo:Test123@todolist.mfk1d.mongodb.net/todolist?retryWrites=true&w=majority");
+mongoose.connect(process.env.MONGODB_URI);
 
 const item1 = new Item({
   name: "Welcome to your todolist!"
